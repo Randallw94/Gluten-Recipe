@@ -20,8 +20,8 @@ const BreakFastRecipes = () => {
   }, []);
 
   return (
-    <div className="container" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover", backgroundRepeat:"no-repeat", backgroundPosition:'center'}}>
-      <div style={{color:'white', fontSize:25}}>
+    <div className="container" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover", backgroundRepeat:"no-repeat", backgroundPosition:'center', height:'100vh',color:'white', fontSize:25}}>
+      <div>
         <h1>Breakfast Recipes List:</h1>
         <div className="row">
           <Link style={{textDecoration:"none"}} to='/breakfast/add'><button className="btn hover">Create Breakfast Recipe</button></Link>

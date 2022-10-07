@@ -15,6 +15,8 @@ import AddDinnerRecipe from './components/AddDinnerRecipe';
 import ViewDinnerRecipes from './components/ViewDinnerRecipe';
 
 import EditBreakfastRecipe from './components/EditBreakfastRecipe';
+import EditLunchRecipe from './components/EditLunchRecipe';
+import EditDinnerRecipe from './components/EditDinnerRecipe';
 
 function App() {
   return (
@@ -34,11 +36,13 @@ function App() {
           <Route path='/lunch' element={<LunchRecipes/>} />
           <Route path='/lunch/:id' element={<ViewLunchRecipes/>}/>
           <Route path='/lunch/add' element={<AddLunchRecipes/>}/>
+          <Route path='/lunch/edit/:id' element={<EditLunchRecipe/>}/>
           
           {/* Dinner */}
           <Route path='/dinner' element={<DinnerRecipes/>} />
           <Route path='/dinner/:id' element={<ViewDinnerRecipes/>}/>
           <Route path='/dinner/add' element={<AddDinnerRecipe/>}/>
+          <Route path='/dinner/edit/:id' element={<EditDinnerRecipe/>}/>
         </Routes>
       </BrowserRouter>
     </div>

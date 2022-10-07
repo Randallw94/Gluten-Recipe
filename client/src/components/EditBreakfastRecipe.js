@@ -10,9 +10,11 @@ const EdtBreakfastRecipe = (props) => {
 
     const navigate = useNavigate();
     const [name, setName] = useState("");
+    const [creator, setCreator] = useState("");
     const [preptime, setPrepTime] = useState("");
     const [cooktime, setCookTime] = useState("");
-    const [servings, setServings] = useState("");
+    const [serving, setServing] = useState("");
+    const [instruction, setInstruction] = useState("");
     const [description, setDescription] = useState("");
     const [rating, setRating] = useState("");
     const [image, setImage] = useState("");
@@ -25,9 +27,11 @@ const EdtBreakfastRecipe = (props) => {
         .then((res)=>{
             console.log(res.data.recipe)
             setName(res.data.recipe.name)
+            setCreator(res.data.recipe.creator)
             setPrepTime(res.data.recipe.preptime)
             setCookTime(res.data.recipe.cooktime)
-            setServings(res.data.recipe.servings)
+            setServing(res.data.recipe.serving)
+            setInstruction(res.data.recipe.instruction)
             setDescription(res.data.recipe.description)
             setRating(res.data.recipe.rating)
         })
@@ -39,6 +43,10 @@ const EdtBreakfastRecipe = (props) => {
     const handleName = (e)=>{
       setErrors("")
       setName(e.target.value)
+    }
+    const handleCreator = (e)=>{
+      setErrors("")
+      setCreator(e.target.value)
     }
 
     const handlePrepTime = (e)=>{
@@ -53,9 +61,13 @@ const EdtBreakfastRecipe = (props) => {
 
     const handleServings = (e)=>{
       setErrors("")
-      setServings(e.target.value)
+      setServing(e.target.value)
     }
 
+    const handleInstruction = (e)=>{
+      setErrors("")
+      setInstruction(e.target.value)
+    }
     const handleDescription = (e)=>{
       setErrors("")
       setDescription(e.target.value)
@@ -78,9 +90,11 @@ const EdtBreakfastRecipe = (props) => {
 
       const breakfastRecipe = {
           name,
+          creator,
           preptime,
           cooktime,
-          servings,
+          serving,
+          instruction,
           description,
           rating,
           image,
@@ -98,65 +112,69 @@ const EdtBreakfastRecipe = (props) => {
   }
 
   return (
-    <div className="App">
-    <h2 style={{marginTop:0, padding:20, fontSize:35}}>{name}</h2>
     <div>
-    <form onSubmit={handleSubmit}>
+      <h2 style={{marginTop:0, padding:20, fontSize:35}}>Edit Recipe</h2>
+      {/* <img style={{borderRadius:50,height:200, width:350}} alt="" /> */}
       <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Recipe Name:</label>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Recipe Name:</label>
+            <input className="form-control" onChange={handleName} type="text" value={name}  />
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Creator Name:</label>
+            <input className="form-control" onChange={handleCreator} type="text" value={creator}  />
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Prep Time:</label>
+            <input className="form-control" onChange={handlePrepTime} type="text" value={preptime}  />
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Cook Time:</label>
+            <input className="form-control" onChange={handleCookTime} type="text" value={cooktime}/>
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Servings:</label>
+            <input className="form-control" onChange={handleServings} type="text" value={serving}/>
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Instrunctions:</label>
+            <textarea className="form-control" onChange={handleInstruction} style={{height:100,width:300}} value={instruction}/>
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Description:</label>
+            <input className="form-control" onChange={handleDescription} value={description}/>
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Rating:</label>
+            <select className="form-control" onChange={handleRating}>
+                        <option></option>
+                        {ratings.map((item, index) => (
+                            <option key={index} value={item}>
+                                {item}
+                            </option>
+                        ))}
+                    </select>
+        </div>
+        <div className="form-group">
+            {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+            <label htmlFor="">Image:</label>
+            <input className="form-control" type ="text" onChange={handleImage} value={image}/>
+        </div>
+        <div className="row">
+          <button className="btn hover hover-success" type="submit">Update Recipe</button>
+          <button onClick={() => navigate("/breakfast")} className="btn hover hover-danger">Cancel</button></div>
+      </form>
       </div>
-      <div>
-          <input className="form-control" onChange={handleName} type="text" value={name}  />
-      </div>
-      <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Prep Time:</label>
-      </div>
-      <div>
-          <input className="form-control" onChange={handlePrepTime} type="text" value={preptime}  />
-      </div>
-      <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Cook Time:</label>
-      </div>
-      <div>
-          <input className="form-control" onChange={handleCookTime} type="text" value={cooktime}/>
-      </div>
-      <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Servings:</label>
-      </div>
-      <div>
-          <input className="form-control" onChange={handleServings} type="text" value={servings}/>
-      </div>
-      <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Description:</label>
-      </div>
-      <div>
-          <textarea className="form-control" onChange={handleDescription} rows="5" cols="100" value={description}/>
-      </div>
-      <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Rating:</label>
-      </div>
-      <div>
-          <input className="form-control" onChange={handleRating} type="number" min={0} max={5} value={rating}/>
-      </div>
-      <div>
-          {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-          <label htmlFor="">Image:</label>
-      </div>
-      <div>
-          <input className="form-control" type ="text" onChange={handleImage} value={image}/>
-      </div>
-      <div className="row">
-        <button className="btn hover hover-success" type="submit">Update Recipe</button>
-        <button onClick={() => navigate("/breakfast")} className="btn hover hover-danger">Cancel</button></div>
-    </form>
     </div>
-  </div>
   )
 }
 

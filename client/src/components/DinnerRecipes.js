@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import axios from 'axios'
 import {useNavigate,Link} from 'react-router-dom'
+import backgroundImage from "../images/dinner.jpg"
 
 const DinnerRecipes = () => {
   const [dinnerRecipes,setDinnerRecipes] = useState([])
@@ -17,26 +18,24 @@ const DinnerRecipes = () => {
     })
 },[])
   return (
+    <div className="container" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover", backgroundRepeat:"no-repeat", backgroundPosition:'center', height:'100vh',color:'black', fontSize:25}}>
     <div>
-    <h3>Dinner Recipes</h3>
-    <div style={{display:"flex", justifyContent:"center"}}>
-      <button className = "btn hover" onClick={()=>navigate('/dinner/add')}>Create Dinner Recipe</button>
-      <button className = "btn hover" onClick={()=>navigate('/')}>Dashboard</button>
+      <h1>Dinner Recipes List:</h1>
+      <div className="row">
+        <Link style={{textDecoration:"none"}} to='/dinner/add'><button className="btn hover">Create Dinner Recipe</button></Link>
+        <Link style={{textDecoration:"none"}} to='/'><button className="btn hover">DashBoard</button></Link>
+      </div>
     </div>
-    
-    <div className="container">
+    <div className="subContainer">
       {
           dinnerRecipes.map((item,idx)=>(
-            <div onClick={()=>navigate(`/dinner/${item._id}`)} style={{backgroundImage:`url(${item.image})`,backgroundSize:"cover", backgroundPosition:"center"}} className="card hover" key={idx}>
-              <h4 className="recipe-title">{item.name}</h4>
-              </div>
+            <div className="card-view" onClick={()=>navigate(`/dinner/${item._id}`)} style={{backgroundImage:`url(${item.image})`,backgroundSize:"cover", backgroundPosition:"center", backgroundColor:'gray'}} key={idx}>
+              <h4 className="">{item.name}</h4>
+            </div>
           ))
       }
     </div>
-
-      
-    
-</div>
+  </div>
   )
 }
 

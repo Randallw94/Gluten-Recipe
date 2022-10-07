@@ -37,7 +37,7 @@ const BreakfastRecipeController={
             res.status(201).json({recipe})
         })
         .catch((err)=>{
-            res.status(400).json({message: "Something went wrong", err})
+            res.status(400).json({message: "Something went wrong creating a breakfast recipe", err})
         })
     },
 

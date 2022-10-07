@@ -9,10 +9,10 @@ const ViewLunchRecipe = () => {
   const {id} = useParams()
 
   useEffect(()=>{
-    axios.get(`http://localhost:8000/api/v1/recipes/${id}`)
+    axios.get(`http://localhost:8000/api/v1/lunch/recipe/${id}`)
     .then((res)=>{
       console.log(res)
-      setLunchRecipe(res.data)
+      setLunchRecipe(res.data.recipe)
     })
     .catch((err)=>{
       console.log(err)
@@ -32,19 +32,27 @@ const ViewLunchRecipe = () => {
   return (
     <div>
       <div>
-        <Link to="/breakfast"><button className="btn hover">All Breakfast Recipes</button></Link>
-        <div style={{height:200, width:200, borderRadius:100,backgroundImage:`url(${lunchRecipe.image})`, backgroundSize:'cover', backgroundPosition:'center'}}/>
-        <div>
-          <p>{lunchRecipe.name}</p>
-          <p>Serving Size: {lunchRecipe.servings}</p>
-          <p>Cook Time: {lunchRecipe.cooktime}</p>
-          <p>Prep Time: {lunchRecipe.preptime}</p>
-          <p>Description: {lunchRecipe.description}</p>
-          <p>Rating: {lunchRecipe.rating} / 5</p>
-        </div>
-        <div style={{display:'flex',justifyContent:'center'}}>
-          <button onClick={handleDelete} className="" >Delete</button>
-          <Link to={`/recipes/${lunchRecipe._id}/edit`}><button  className="" >Edit</button></Link>
+        <div className="container">
+          <div className="row">
+            <h2>{lunchRecipe.name}</h2>
+            <Link style={{textDecoration:'none'}}to="/lunch"><button className="btn">All Lunch Recipes</button></Link>
+          </div>
+          <div className="view-content" style={{backgroundColor:'gray'}}>
+            <div style={{height:300, width:300,backgroundImage:`url(${lunchRecipe.image})`, backgroundSize:'cover', backgroundPosition:'center'}}/>
+            <div style={{display:'flex', flexDirection:'column'}}>
+              <h4>Creator: {lunchRecipe.creator}</h4>
+              <h4>Serving Size: {lunchRecipe.servings}</h4>
+              <h4>Cook Time: {lunchRecipe.cooktime} minutes</h4>
+              <h4>Prep Time: {lunchRecipe.preptime} minutes</h4>
+              <h4>Instruction: {lunchRecipe.instruction}</h4>
+              <h4>Description:{lunchRecipe.description}</h4> 
+              <h4>Rating: {lunchRecipe.rating} / 5 <span style={{color:'yellow'}}>&#9733;</span></h4>
+            </div>
+          </div>
+            <div className="btn-view"style={{textAlign:'center'}}>
+              <Link style={{textDecoration:'none'}} to={`/lunch/edit/${lunchRecipe._id}`}><button  className="btn hover-warning" >Edit</button></Link>
+              <button onClick={handleDelete} className="btn hover hover-danger" >Delete</button>
+            </div>
         </div>
       </div>
     </div>

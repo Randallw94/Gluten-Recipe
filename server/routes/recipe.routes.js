@@ -16,12 +16,12 @@ const routes =(app) =>{
     app.get('/api/v1/dinner/recipes', DinnerRecipeController.getAll)
 
     // find one recipe by id
-    app.get("/api/v1/recipes/:id", BreakfastRecipeController.getOne);
-    app.get("/api/v1/recipes/:id", LunchRecipeController.getOne);
-    app.get("/api/v1/recipes/:id", DinnerRecipeController.getOne);
+    app.get("/api/v1/breakfast/recipe/:id", BreakfastRecipeController.getOne);
+    app.get("/api/v1/lunch/recipe/:id", LunchRecipeController.getOne);
+    app.get("/api/v1/dinner/recipe/:id", DinnerRecipeController.getOne);
 
     // create
-    // create a recipe pet
+    // create a recipe
     app.post('/api/v1/add/breakfast/recipes', BreakfastRecipeController.createOne)
     app.post('/api/v1/add/lunch/recipes', LunchRecipeController.createOne)
     app.post('/api/v1/add/dinner/recipes', DinnerRecipeController.createOne)

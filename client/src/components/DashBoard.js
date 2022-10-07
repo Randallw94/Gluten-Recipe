@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
 import backgroundImage from '../images/background.jpg'
-import Footer from '../views/Footer'
 
 const DashBoard = () => {
   return (
@@ -20,9 +19,6 @@ const DashBoard = () => {
             <Link to="/dinner"><img className="dashboard-image" src="https://www.acouplecooks.com/wp-content/uploads/2021/05/Gluten-Free-Dairy-Free-Recipes-1.jpg" alt="Dinner" /></Link>
             <h2>Dinner</h2>
           </div>
-        </div>
-        <div>
-          <Footer/>
         </div>
     </div>
   );

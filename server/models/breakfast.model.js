@@ -7,6 +7,12 @@ const BreakfastSchema = new mongoose.Schema({
         required:[true, "Name of recipe is required "],
         minLength:[3, "Name of recipe must be at least 3 characters long"]
     },
+    creator:{
+        type: String,
+        required:[true, "Creator must be provided"],
+        minLength:[3, "Creator name of the recipe must be longer than 3 characters"]
+
+    },
     preptime: {
         type: String,
         // validations done for type on back-end
@@ -19,11 +25,17 @@ const BreakfastSchema = new mongoose.Schema({
         required:[true, "Cook time must be provided for this recipe"],
         minLength:[0, "Cook time of recipe must be longer than 0 minutes"]
     },
-    servings:{
+    serving:{
         type: Number,
         // validations done for type on back-end
         required:[true, "Number of servings is required"],
         min:[0, "Servings must be greater than 0"]
+    },
+    instruction: {
+        type: String,
+        // validations done for description on back-end
+        required:[true, "Instruction of recipe is required "],
+        minLength:[3, "Instruction of recipe must be at least 3 characters long"]
     },
     description: {
         type: String,
@@ -39,8 +51,7 @@ const BreakfastSchema = new mongoose.Schema({
         }
     },
     image:{
-        type:String,
-        required:[true,"Image is necessary"]
+        type:String
     },
 },{timestamps:true})
 

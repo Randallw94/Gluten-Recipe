@@ -5,20 +5,27 @@ import axios from "axios";
 const AddLunchRecipes = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
+    const [creator, setCreator] = useState("");
     const [preptime, setPrepTime] = useState("");
     const [cooktime, setCookTime] = useState("");
-    const [servings, setServings] = useState("");
+    const [serving, setServing] = useState("");
+    const [instruction, setInstruction] = useState("");
     const [description, setDescription] = useState("");
     const [rating, setRating] = useState("");
     const [image, setImage] = useState("");
-    const [errors, setErrors] = useState({});
+    const [errors,setErrors] = useState({})
 
-    const ratings = ["0", "1", "2", "3", "4", "5"];
+    const ratings = [0, 1, 2, 3, 4, 5];
 
     const handleName = (e) => {
         setErrors("");
         setName(e.target.value);
     };
+
+    const handleCreator = (e)=>{
+        setErrors("")
+        setCreator(e.target.value)
+    }
 
     const handlePrepTime = (e) => {
         setErrors("");
@@ -32,7 +39,12 @@ const AddLunchRecipes = () => {
 
     const handleServings = (e) => {
         setErrors("");
-        setServings(e.target.value);
+        setServing(e.target.value);
+    };
+
+    const handleInstruction = (e)=>{
+        setErrors("")
+        setInstruction(e.target.value)
     };
 
     const handleDescription = (e) => {
@@ -55,9 +67,11 @@ const AddLunchRecipes = () => {
 
         const lunchRecipes = {
             name,
+            creator,
             preptime,
             cooktime,
-            servings,
+            serving,
+            instruction,
             description,
             rating,
             image,
@@ -75,95 +89,69 @@ const AddLunchRecipes = () => {
             });
     };
     return (
-        <div className="row">
-            <h2>Add Lunch Recipe</h2>
-            <form onSubmit={handleSubmit}>
-                    <label htmlFor="">Recipe Name:</label>
-                <div>
-                    {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-                    <input
-                        className="form-control"
-                        onChange={handleName}
-                        type="text"
-                        value={name}
-                    />
-                </div>
-                    <label htmlFor="">Prep Time:</label>
-                <div>
-                    {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-                    <input
-                        className="form-control"
-                        onChange={handlePrepTime}
-                        type="text"
-                        value={preptime}
-                    />
-                </div>
-                    <label htmlFor="">Cook Time:</label>
-                <div>
-                    {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-                    <input
-                        className="form-control"
-                        onChange={handleCookTime}
-                        type="text"
-                        value={cooktime}
-                    />
-                </div>
-                    <label htmlFor="">Servings:</label>
-                <div>
-                    {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-                    <input
-                        className="form-control"
-                        onChange={handleServings}
-                        type="number"
-                        value={servings}
-                        min={0}
-                    />
-                </div>
-                    <label htmlFor="">Description:</label>
-                <div>
-                    {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-                    <input
-                        className="form-control"
-                        onChange={handleDescription}
-                        type="text"
-                        value={description}
-                    />
-                </div>
-                    <label htmlFor="">Rating:</label>
-                <div>
-                    {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
-                    <select className="form-control" onChange={handleRating}>
-                        <option></option>
-                        {ratings.map((item, index) => (
-                            <option key={index} value={item}>
-                                {item}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                    <label htmlFor="">Image:</label>
-                <div>
-                    {/* {errors.boxArt ? <p>{errors.boxArt.message}</p>:null} */}
-                    <input
-                        className="form-control"
-                        onChange={handleImage}
-                        type="text"
-                        value={image}
-                    />
-                </div>
-                <div className="row">
-                    <button className="btn hover hover-success" type="submit">
-                        Add Recipe
-                    </button>
-                    <button
-                        onClick={() => navigate("/")}
-                        className="btn hover hover-danger"
-                    >
-                        Cancel
-                    </button>
-                </div>
-            </form>
+        <div style={{backgroundColor:'#171b21',color:'white'}}>
+        <h2 style={{marginTop:0, padding:20, fontSize:35}}>Add Lunch Recipe</h2>
+        <img style={{borderRadius:50,height:200, width:350}}src="https://slideplayer.com/5833249/19/images/slide_1.jpg" alt="" />
+        <div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Recipe Name:</label>
+              <input className="form-control" onChange={handleName} type="text" value={name}  />
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Creator Name:</label>
+              <input className="form-control" onChange={handleCreator} type="text" value={creator}  />
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Prep Time:</label>
+              <input className="form-control" onChange={handlePrepTime} type="text" value={preptime}  />
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Cook Time:</label>
+              <input className="form-control" onChange={handleCookTime} type="text" value={cooktime}/>
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Servings:</label>
+              <input className="form-control" onChange={handleServings} type="text" value={serving}/>
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Instrunctions:</label>
+              <textarea className="form-control" onChange={handleInstruction} style={{height:100,width:300}} value={instruction}/>
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Description:</label>
+              <input className="form-control" onChange={handleDescription} value={description}/>
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Rating:</label>
+              <select className="form-control" onChange={handleRating}>
+                          <option></option>
+                          {ratings.map((item, index) => (
+                              <option key={index} value={item}>
+                                  {item}
+                              </option>
+                          ))}
+                      </select>
+          </div>
+          <div className="form-group">
+              {/* {errors.title ? <p>{errors.title.message}</p>:null} */}
+              <label htmlFor="">Image:</label>
+              <input className="form-control" type ="text" onChange={handleImage} value={image}/>
+          </div>
+          <div className="row">
+            <button className="btn hover hover-success" type="submit">Add Recipe</button>
+            <button onClick={() => navigate("/lunch")} className="btn hover hover-danger">Cancel</button></div>
+        </form>
         </div>
+      </div>
     );
 };
 
