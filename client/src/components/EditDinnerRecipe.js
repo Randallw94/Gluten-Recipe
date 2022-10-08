@@ -108,7 +108,7 @@ const EditDinnerRecipe = () => {
       })
   }
   return (
-    <div>
+    <div style={{backgroundColor:"#d5e1e1"}}>
     <h2 style={{marginTop:0, padding:20, fontSize:35}}>Edit Recipe</h2>
     {/* <img style={{borderRadius:50,height:200, width:350}} alt="" /> */}
     <div>

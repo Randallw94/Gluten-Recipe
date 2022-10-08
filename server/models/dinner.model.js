@@ -48,7 +48,8 @@ const DinnerSchema = new mongoose.Schema({
         enum:{
             values:[0,1,2,3,4,5],
             message:'{VALUE} not supported'
-        }
+        },
+        required:[true, "Recipe rating is required: "],
     },
     image:{
         type:String,

@@ -84,8 +84,8 @@ const AddBreakfastRecipes = () => {
           navigate("/breakfast")
       })
       .catch((err)=>{
-          console.log(err)
-          setErrors(err)
+          console.log(err.response.data)
+          setErrors(err.response.data.err.errors)
       })
   }
 
@@ -96,35 +96,43 @@ const AddBreakfastRecipes = () => {
       <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-            <label htmlFor="">Recipe Name:</label>
-            <input className="form-control" onChange={handleName} type="text" value={name}  />
+          <label htmlFor="">Recipe Name:</label>
+          {errors.name ? <p className='errors'>{errors.name.message}</p>:null}
+          <input className="form-control" onChange={handleName} type="text" value={name}  />
         </div>
         <div className="form-group">
-            <label htmlFor="">Creator Name:</label>
-            <input className="form-control" onChange={handleCreator} type="text" value={creator}  />
+          <label htmlFor="">Creator Name:</label>
+          {errors.creator ? <p className='errors'>{errors.creator.message}</p>:null}
+          <input className="form-control" onChange={handleCreator} type="text" value={creator}  />
         </div>
         <div className="form-group">
-            <label htmlFor="">Prep Time:</label>
-            <input className="form-control" onChange={handlePrepTime} type="text" value={preptime}  />
+          <label htmlFor="">Prep Time:</label>
+          {errors.preptime ? <p className='errors'>{errors.preptime.message}</p>:null}
+          <input className="form-control" onChange={handlePrepTime} type="text" value={preptime}  />
         </div>
         <div className="form-group">
-            <label htmlFor="">Cook Time:</label>
-            <input className="form-control" onChange={handleCookTime} type="text" value={cooktime}/>
+          <label htmlFor="">Cook Time:</label>
+          {errors.cooktime ? <p className='errors'>{errors.cooktime.message}</p>:null}
+          <input className="form-control" onChange={handleCookTime} type="text" value={cooktime}/>
         </div>
         <div className="form-group">
             <label htmlFor="">Servings:</label>
+            {errors.serving ? <p className='errors'>{errors.serving.message}</p>:null}
             <input className="form-control" onChange={handleServings} type="text" value={serving}/>
         </div>
         <div className="form-group">
-            <label htmlFor="">Instrunctions:</label>
+            <label htmlFor="">Instructions:</label>
+            {errors.instruction ? <p className='errors'>{errors.instruction.message}</p>:null}
             <textarea className="form-control" onChange={handleInstruction} style={{height:100,width:300}} value={instruction}/>
         </div>
         <div className="form-group">
             <label htmlFor="">Description:</label>
+            {errors.description ? <p className='errors'>{errors.description.message}</p>:null}
             <input className="form-control" onChange={handleDescription} value={description}/>
         </div>
         <div className="form-group">
             <label htmlFor="">Rating:</label>
+            {errors.rating ? <p className='errors'>{errors.rating.message}</p>:null}
             <select className="form-control" onChange={handleRating}>
                         <option></option>
                         {ratings.map((item, index) => (
@@ -136,6 +144,7 @@ const AddBreakfastRecipes = () => {
         </div>
         <div className="form-group">
             <label htmlFor="">Image:</label>
+            {errors.image ? <p className='errors'>{errors.image.message}</p>:null}
             <input className="form-control" type ="text" onChange={handleImage} value={image}/>
         </div>
         <div className="row">

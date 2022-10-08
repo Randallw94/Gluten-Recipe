@@ -16,7 +16,7 @@ const LunchSchema = new mongoose.Schema({
     preptime: {
         type: String,
         // validations done for type on back-end
-        required:[true, "Preptime must be provided"],
+        required:[true, "Prep time must be provided"],
         minLength:[0, "Prep time of recipe must be longer than 0 minutes"]
     },
     cooktime:{
@@ -48,7 +48,8 @@ const LunchSchema = new mongoose.Schema({
         enum:{
             values:[0,1,2,3,4,5],
             message:'{VALUE} not supported'
-        }
+        },
+        required:[true, "Recipe rating is required: "],
     },
     image:{
         type:String,

@@ -4,8 +4,8 @@ import backgroundImage from '../images/background.jpg'
 
 const DashBoard = () => {
   return (
-    <div className="container" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover", color:"white"}}>
-        <h1 style={{fontSize:55, marginTop:0}}>Welcome to Gluten Free Recipes</h1>
+    <div className="container" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover", color:"white", width:'100%'}}>
+        <h1 style={{fontSize:55}}>Welcome to Gluten Free Recipes</h1>
         <div className="subContainer">
           <div className="category-box">
             <Link to="/breakfast"><img className="dashboard-image" src="https://mamashire.com/wp-content/uploads/Gluten-Free-Dairy-Free-Breakfast-Casserole-SQ-1.jpg" alt="Breakfast" /></Link>
